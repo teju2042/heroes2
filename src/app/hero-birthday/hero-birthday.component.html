@@ -1,0 +1,60 @@
+<div class="row">
+  <h1 i18n="site title|The title for our i18n sample app@@appTitle"></h1>
+  <ol class="col-sm-5">
+    <h3>Date</h3>
+    <li> Short {{birthday | date:'short' | uppercase}}</li>
+    <li>Medium {{birthday | date:'medium' | uppercase}}</li>
+    <li> Long {{today | date: 'long'}}</li>
+    <li>Full {{birthday | date:'full'}}</li>
+    <li>shortDate {{birthday | date:'shortDate'}}</li>
+    <li> Medium Date {{birthday | date:'mediumDate'}}</li>
+  </ol>
+  <ol class="col-sm-3">
+      <h3>Currency</h3>
+      <li>By Default in USD {{salary | currency}}</li>
+      <li>INR {{salary | currency:'INR'}}</li>
+      <li>Decimal {{salary | currency: 'INR' : TRUE : '8.2'}}</li>
+    </ol>
+    <ol class="col-sm-4">
+      <h3>Number Pipe</h3>
+      <li>No Formating : {{e | number}}</li>
+      <li>e (3.1-5): {{e | number:'1.1-3'}}</li>
+      <li>pi (no formatting): {{pi | number}}</li>
+      <li>-2.5 (1.0-0): {{-2.5 | number:'1.0-0'}}</li>
+    </ol>
+    <div class="col-sm-4">
+      <h3>Filter Pipe</h3>
+      <div>
+          <input type="text" [(ngModel)]="userFilter.name" placeholder="name">
+          <ul>
+            <li *ngFor="let user of users | filterBy: userFilter">{{ user.name }}</li>
+            
+            <!-- in case you want to show empty message -->
+            <li *ngIf="(users | filterBy: userFilter).length === 0">No matching elements</li>
+          </ul>
+      </div>  
+      
+    </div>
+    <div class="col-sm-4">
+      <h3>OrderBy Pipe</h3>
+      <ul>
+        <li *ngFor="let item of array | orderBy: order : true : true">
+            {{ item.name }}
+        </li>
+      </ul>
+    </div>
+    <div class="col-sm-4">
+        <h1 translate>Title</h1>
+        <div>
+         {{ 'Intro' | translate:user }}
+        </div>
+        
+        <br/>
+        <button (click)="switchLanguage('en')">en</button>
+        <button (click)="switchLanguage('fr')">fr</button>
+    </div>
+   
+    
+</div>
+
+

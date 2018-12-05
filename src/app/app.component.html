@@ -1,0 +1,21 @@
+<app-layout>
+    <div class="jumbotron">
+      <h1>{{title}}</h1>
+<nav class="new-nav">
+  <!--<a *ngIf="!auth.isLoggednIn()" routerLink="/dashboard">Dashboard</a>-->
+  <a routerLink="/dashboard">Dashboard</a>
+  <a routerLink="/heroes">Heroes</a>
+  <a routerLink="/test">Test</a>
+  <a routerLink="/hero-birthday">Date</a>
+  <a routerLink="/ngrx-store">Ngrx-Store</a>
+  <a routerLink="/login">Login</a>
+  <a routerLink="/social-login">Social Login</a>
+  <!--<a *ngIf="auth.isLoggednIn()" (click)="auth.logout()">Logout</a>-->
+
+</nav>
+<router-outlet></router-outlet>
+<app-messages></app-messages>
+</div>
+</app-layout>
+
+

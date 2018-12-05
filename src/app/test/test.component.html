@@ -1,0 +1,237 @@
+<div class="row">
+  <div class="col-sm-4">
+    <p class="new-p">1. Autocomplete</p>
+    <mat-form-field>
+      <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of options" [value]="option">{{option}}</mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <div class="col-sm-4">
+    <p class="new-p">2. Filter Autocomplete</p>
+  </div>
+  <div class="col-sm-4">
+    <p class="new-p">3. Value Assign</p>
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input type="text" placeholder="Assignee" aria-label="Assignee" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-4">
+      <p class="new-p">1. Datepicker</p>
+      <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+  </div>
+  <div class="col-sm-4">
+      <p class="new-p">2. Datepicker With Starting Date</p>
+      <mat-form-field>
+          <input matInput [matDatepicker]="pickerTo" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+          <mat-datepicker #pickerTo startView="year" [startAt]="startDate"></mat-datepicker>
+      </mat-form-field>
+  </div>
+  <div class="col-sm-4">
+      <p class="new-p">3. Datepicker With Date Validation</p>
+      <mat-form-field class="example-full-width">
+          <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="pickerValidate" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="pickerValidate"></mat-datepicker-toggle>
+          <mat-datepicker #pickerValidate></mat-datepicker>
+      </mat-form-field>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+      <p class="new-p">4. Datepicker With UI Touch</p>
+      <mat-form-field class="example-full-width">
+          <input matInput [matDatepicker]="pickerUI" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="pickerUI"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #pickerUI></mat-datepicker>
+      </mat-form-field>
+  </div>
+  
+</div>
+<div class="row">
+  <div class="col-sm-4">
+    <p class="new-p">1. Simple Input Fields</p>
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Favorite food" value="Sushi">
+        </mat-form-field>
+      
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Leave a comment"></textarea>
+        </mat-form-field>
+      </form>
+  </div>
+  <div class="col-sm-4">
+      <p class="new-p">2. Password And Amount</p>
+      <div class="example-container">
+          <mat-form-field>
+            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+        
+          <mat-form-field>
+            <input matInput placeholder="Amount" type="number" class="example-right-align">
+            <span matPrefix>$&nbsp;</span>
+            <span matSuffix>.00</span>
+          </mat-form-field>
+        </div>
+  </div>
+  <div class="col-sm-4">
+      <!--<p class="new-p">3. Theming</p>
+      <form class="example-container" [formGroup]="options" [style.fontSize.px]="getFontSize()">
+          <mat-form-field [color]="options.value.color">
+            <mat-select placeholder="Color" formControlName="color">
+              <mat-option value="primary">Primary</mat-option>
+              <mat-option value="accent">Accent</mat-option>
+              <mat-option value="warn">Warn</mat-option>
+            </mat-select>
+          </mat-form-field>
+        
+          <mat-form-field [color]="options.value.color">
+            <input matInput type="number" placeholder="Font size (px)" formControlName="fontSize" min="10">
+            <mat-error *ngIf="options.get('fontSize')?.invalid">Min size: 10px</mat-error>
+          </mat-form-field>
+      </form>-->
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-8">
+      <p class="new-p">Slider</p>
+      <!--<p class="new-p">Floating Label</p>
+      <div class="example-container">
+          <form class="example-container" [formGroup]="options">
+            <mat-checkbox formControlName="hideRequired">Hide required marker</mat-checkbox>
+            <div>
+              <label>Float label: </label>
+              <mat-radio-group formControlName="floatLabel">
+                <mat-radio-button value="auto">Auto</mat-radio-button>
+                <mat-radio-button value="always">Always</mat-radio-button>
+                <mat-radio-button value="never">Never</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </form>
+        
+          <mat-form-field
+              [hideRequiredMarker]="options.value.hideRequired"
+              [floatLabel]="options.value.floatLabel">
+            <input matInput placeholder="Simple placeholder" required>
+          </mat-form-field>
+        
+          <mat-form-field [floatLabel]="options.value.floatLabel">
+            <mat-label>Both a label and a placeholder</mat-label>
+            <input matInput placeholder="Simple placeholder">
+          </mat-form-field>
+        
+          <mat-form-field
+              [hideRequiredMarker]="options.value.hideRequired"
+              [floatLabel]="options.value.floatLabel">
+            <mat-select required>
+              <mat-option>-- None --</mat-option>
+              <mat-option value="option">Option</mat-option>
+            </mat-select>
+            <mat-label><mat-icon>favorite</mat-icon> <b> Fancy</b> <i> label</i></mat-label>
+          </mat-form-field>
+        </div>-->
+        <mat-slider
+        thumbLabel
+        [displayWith]="formatLabel"
+        tickInterval="1000"
+        min="1"
+        max="100000"></mat-slider>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-4">
+    <p class="new-p">Simple Menu Dropdown</p>
+    <button mat-mutton [matMenuTriggerFor] = "menu"> Menu</button>
+      <mat-menu #menu = "matMenu">
+        <button mat-menu-item> 1 item </button>
+        <button mat-menu-item> 2 item </button>
+      </mat-menu>
+  </div>
+  <div class="col-sm-4">
+      <p class="new-p">Nested Menu</p>
+      <button mat-button [matMenuTriggerFor]="animals">Animal index</button>
+        <mat-menu #animals="matMenu">
+          <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
+          <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
+        </mat-menu>
+
+        <mat-menu #vertebrates="matMenu">
+          <button mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
+          <button mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
+          <button mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
+          <button mat-menu-item>Birds</button>
+          <button mat-menu-item>Mammals</button>
+        </mat-menu>
+
+        <mat-menu #invertebrates="matMenu">
+          <button mat-menu-item>Insects</button>
+          <button mat-menu-item>Molluscs</button>
+          <button mat-menu-item>Crustaceans</button>
+          <button mat-menu-item>Corals</button>
+          <button mat-menu-item>Arachnids</button>
+          <button mat-menu-item>Velvet worms</button>
+          <button mat-menu-item>Horseshoe crabs</button>
+        </mat-menu>
+
+        <mat-menu #fish="matMenu">
+          <button mat-menu-item>Baikal oilfish</button>
+          <button mat-menu-item>Bala shark</button>
+          <button mat-menu-item>Ballan wrasse</button>
+          <button mat-menu-item>Bamboo shark</button>
+          <button mat-menu-item>Banded killifish</button>
+        </mat-menu>
+
+        <mat-menu #amphibians="matMenu">
+          <button mat-menu-item>Sonoran desert toad</button>
+          <button mat-menu-item>Western toad</button>
+          <button mat-menu-item>Arroyo toad</button>
+          <button mat-menu-item>Yosemite toad</button>
+        </mat-menu>
+
+        <mat-menu #reptiles="matMenu">
+          <button mat-menu-item>Banded Day Gecko</button>
+          <button mat-menu-item>Banded Gila Monster</button>
+          <button mat-menu-item>Black Tree Monitor</button>
+          <button mat-menu-item>Blue Spiny Lizard</button>
+          <button mat-menu-item disabled>Velociraptor</button>
+        </mat-menu>
+  </div>
+  <div class="col-sm-4">
+      <p class="new-p">Dropdown Menu With Icons</p>
+      <button mat-icon-button [matMenuTriggerFor]="menuicon">
+          <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menuicon="matMenu">
+        <button mat-menu-item>
+          <mat-icon>dialpad</mat-icon>
+          <span>Redial</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>voicemail</mat-icon>
+          <span>Check voicemail</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          <span>Disable alerts</span>
+        </button>
+      </mat-menu>
+  </div>
+  <div>
+    <h2>value: Current Count: {{ count$ | async }}</h2></div>
+</div>
